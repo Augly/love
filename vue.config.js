@@ -4,7 +4,7 @@
  * @Author       : zero
  * @Date         : 2020-07-14 14:31:44
  * @LastEditors  : zero
- * @LastEditTime : 2020-07-14 14:32:50
+ * @LastEditTime : 2020-07-14 22:04:19
  */
 const path = require("path");
 function resolve(dir) {
@@ -29,6 +29,19 @@ module.exports = {
       .options({
         name: "assets/[name].[hash:8].[ext]"
       });
+  },
+  css: {
+    loaderOptions: {
+      less: {
+        // 若使用 less-loader@5，请移除 lessOptions 这一级，直接配置选项。
+        lessOptions: {
+          modifyVars: {
+            // 直接覆盖变量
+            "picker-confirm-action-color": "#F6DEDE"
+          }
+        }
+      }
+    }
   },
   // 配置跨域
   // devServer: {

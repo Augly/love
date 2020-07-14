@@ -4,7 +4,7 @@
  * @Author       : zero
  * @Date         : 2020-07-14 14:02:37
  * @LastEditors  : zero
- * @LastEditTime : 2020-07-14 16:26:57
+ * @LastEditTime : 2020-07-14 21:07:29
 -->
 <template>
   <div id="app">
@@ -39,7 +39,13 @@ export default {
 
   .page {
     width: 100%;
-    height: 100%;
+    min-height: 100%;
+    height: auto;
+    padding-bottom: 50px;
   }
+}
+::-webkit-scrollbar {
+  display: none;
+  /* background-color:transparent; */
 }
 </style>
