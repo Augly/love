@@ -4,13 +4,13 @@
  * @Author       : zero
  * @Date         : 2020-07-14 14:02:37
  * @LastEditors  : zero
- * @LastEditTime : 2020-07-14 20:45:08
+ * @LastEditTime : 2020-07-15 11:53:20
  */
 
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Router from "@/layout/Router.vue";
-
+import Page from "@/layout/Page.vue";
 Vue.use(VueRouter);
 
 const routes = [
@@ -24,7 +24,27 @@ const routes = [
         path: "/index",
         name: "home",
         component: () =>
-          import(/* webpackChunkName: "about" */ "@/views/index.vue")
+          import(/* webpackChunkName: "index" */ "@/views/index.vue")
+      },
+      {
+        path: "/personl",
+        name: "personl",
+        component: () =>
+          import(/* webpackChunkName: "personl" */ "@/views/personl.vue")
+      }
+    ]
+  },
+  {
+    path: "/page",
+    name: "page",
+    component: Page,
+    children: [
+      {
+        path: "/ordel",
+        name: "ordel",
+        meta: { title: "提交订单" },
+        component: () =>
+          import(/* webpackChunkName: "ordel" */ "@/views/ordel.vue")
       }
     ]
   }

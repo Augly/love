@@ -4,17 +4,17 @@
  * @Author       : zero
  * @Date         : 2020-07-14 15:20:25
  * @LastEditors  : zero
- * @LastEditTime : 2020-07-14 23:12:29
+ * @LastEditTime : 2020-07-15 13:12:57
 -->
 <template>
-  <div class="page">
+  <div>
     <div class="page_head">
       <h4>JOJO恋爱合约</h4>
     </div>
     <div class="page_form">
       <div class="form_title">恋爱合约</div>
       <div class="form_title" @click="showPicker = true">
-        恋爱合约
+        {{ value }}
         <div class="trans"></div>
       </div>
       <van-button color="#F6DEDE" class="sure" @click="show = true"
@@ -37,12 +37,60 @@
         <p>定制日期：2020-05-30</p>
         <p>兑现日期：2023-05-30</p>
         <div class="rule_select">
-          <span class="rule_item rule_item_active">详情</span>
-          <span class="rule_item">须知</span>
+          <span
+            @click="ruleSelect = 0"
+            class="rule_item"
+            :class="ruleSelect === 0 ? 'rule_item_active' : ''"
+            >详情</span
+          >
+          <span
+            @click="ruleSelect = 1"
+            class="rule_item"
+            :class="ruleSelect === 1 ? 'rule_item_active' : ''"
+            >须知</span
+          >
         </div>
-        <div class="rule">
+        <div class="rule" v-if="ruleSelect === 0">
           <p>
             恋爱合约自支付成功后次日零时起生效，本合约生效3年后且在约定的合约期内，签约人与心上人均为彼此在民政部门领取中华人民共和国结婚证的，签约人符合兑现要求的，可以提出如下兑现申请：
+          </p>
+          <p>
+            1、10001元现金
+          </p>
+          <p>
+            2、10001朵玫瑰花
+          </p>
+          <p>
+            3、价值1万元钻戒
+          </p>
+          <p>
+            恋爱合约自支付成功后次日零时起生效，本合约生效3年后且在约定的合约期内，签约人与心上人均为彼此在民政部门领取中华人民共和国结婚证的，签约人符合兑现要求的，可以提出如下兑现申请：
+          </p>
+          <p>
+            1、10001元现金
+          </p>
+          <p>
+            2、10001朵玫瑰花
+          </p>
+          <p>
+            3、价值1万元钻戒
+          </p>
+          <p>
+            恋爱合约自支付成功后次日零时起生效，本合约生效3年后且在约定的合约期内，签约人与心上人均为彼此在民政部门领取中华人民共和国结婚证的，签约人符合兑现要求的，可以提出如下兑现申请：
+          </p>
+          <p>
+            1、10001元现金
+          </p>
+          <p>
+            2、10001朵玫瑰花
+          </p>
+          <p>
+            3、价值1万元钻戒
+          </p>
+        </div>
+        <div class="rule" v-if="ruleSelect === 1">
+          <p>
+            须知须知须知须知须知须知须知须知
           </p>
           <p>
             1、10001元现金
@@ -82,11 +130,15 @@
           <span class="price">
             ￥299元
           </span>
-          <van-button color="#F78297" class="sure_pay">签约</van-button>
+          <van-button color="#F78297" class="sure_pay" to="ordel"
+            >签约</van-button
+          >
         </div>
       </div>
     </van-popup>
-    <div class="shareContain" @click="handelClick(1)"></div>
+    <div class="shareContain" @click="handelClick(1)">
+      邀请好友最高享31%奖励
+    </div>
     <div class="title_group">
       <span class="title">活动公告</span>
       <span class="more">查看更多</span>
@@ -112,10 +164,11 @@
 export default {
   data() {
     return {
+      ruleSelect: 0,
       showPicker: false,
       show: false,
-      active: 1,
-      columns: ["杭州", "宁波", "温州", "嘉兴", "湖州"]
+      value: "学生(299)",
+      columns: ["学生(299)", "军人(399)"]
     };
   },
   methods: {
@@ -133,10 +186,12 @@ export default {
 <style lang="less" scoped>
 .page_head {
   width: 375px;
-  height: 286px;
-  background: rgba(246, 222, 222, 1);
+  height: 306px;
   box-sizing: border-box;
   padding: 0 23px;
+  background-image: url("~@/assets/image/bg.png");
+  background-size: 100%;
+  background-position: bottom;
   h4 {
     line-height: 120px;
     font-size: 28px;
@@ -146,7 +201,7 @@ export default {
   }
 }
 .rule_popup {
-  height: "458px";
+  height: "463px";
 }
 .page_form {
   width: 351px;
@@ -155,7 +210,7 @@ export default {
   box-shadow: 0px 6px 13px 3px rgba(246, 222, 222, 0.51);
   border-radius: 10px;
   margin: 0 auto;
-  margin-top: -166px;
+  margin-top: -186px;
   box-sizing: border-box;
   padding: 15px 10px;
   .form_title {
@@ -200,10 +255,17 @@ export default {
 .shareContain {
   width: 351px;
   height: 125px;
-  background: rgba(246, 222, 222, 1);
+  background: #ffffff;
   border-radius: 20px;
+  background-image: url("~@/assets/image/share.png");
+  background-size: 100% 100%;
   margin: 0 auto;
   margin-top: 15px;
+  font-size: 23px;
+  text-align: center;
+  line-height: 125px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 1);
 }
 .title_group {
   width: 351px;
@@ -312,9 +374,9 @@ export default {
   }
   .button_group {
     box-sizing: border-box;
-    border-top: 1px solid rgba(204, 204, 204, 1);
+    box-shadow: 0px 2px 18px 0px rgba(209, 209, 209, 0.35);
     margin: 0px -12px;
-    height: 55px;
+    height: 60px;
     background: rgba(255, 255, 255, 1);
     border-radius: 0px 0px 10px 10px;
     padding: 0px 13px;

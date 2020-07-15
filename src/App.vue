@@ -4,15 +4,11 @@
  * @Author       : zero
  * @Date         : 2020-07-14 14:02:37
  * @LastEditors  : zero
- * @LastEditTime : 2020-07-14 21:07:29
+ * @LastEditTime : 2020-07-15 10:50:47
 -->
 <template>
   <div id="app">
     <router-view />
-    <van-tabbar v-model="active" active-color="#F78399">
-      <van-tabbar-item icon="wap-home-o">首页</van-tabbar-item>
-      <van-tabbar-item icon="user-circle-o">我的</van-tabbar-item>
-    </van-tabbar>
   </div>
 </template>
 <script>
