@@ -4,7 +4,7 @@
  * @Author       : zero
  * @Date         : 2020-07-14 15:20:25
  * @LastEditors  : zero
- * @LastEditTime : 2020-07-15 13:12:57
+ * @LastEditTime : 2020-08-03 18:50:59
 -->
 <template>
   <div>
@@ -15,9 +15,8 @@
       <div class="form_title">恋爱合约</div>
       <div class="form_title" @click="showPicker = true">
         {{ value }}
-        <div class="trans"></div>
       </div>
-      <van-button color="#F6DEDE" class="sure" @click="show = true"
+      <van-button color="#5369FC" class="sure" @click="show = true"
         >签订合约</van-button
       >
     </div>
@@ -34,128 +33,68 @@
     <van-popup v-model="show" round position="bottom" class="rule_popup">
       <div class="rule_group">
         <h4>恋爱合约</h4>
-        <p>定制日期：2020-05-30</p>
-        <p>兑现日期：2023-05-30</p>
-        <div class="rule_select">
-          <span
-            @click="ruleSelect = 0"
-            class="rule_item"
-            :class="ruleSelect === 0 ? 'rule_item_active' : ''"
-            >详情</span
-          >
-          <span
-            @click="ruleSelect = 1"
-            class="rule_item"
-            :class="ruleSelect === 1 ? 'rule_item_active' : ''"
-            >须知</span
-          >
+        <div class="date_warp">
+          <div class="date_half">
+            <p class="date_title">定制日期</p>
+            <p class="date_num">2020-05-30</p>
+          </div>
+          <div class="date_half">
+            <p class="date_title">定制日期</p>
+            <p class="date_num">2020-05-30</p>
+          </div>
         </div>
-        <div class="rule" v-if="ruleSelect === 0">
-          <p>
-            恋爱合约自支付成功后次日零时起生效，本合约生效3年后且在约定的合约期内，签约人与心上人均为彼此在民政部门领取中华人民共和国结婚证的，签约人符合兑现要求的，可以提出如下兑现申请：
-          </p>
-          <p>
-            1、10001元现金
-          </p>
-          <p>
-            2、10001朵玫瑰花
-          </p>
-          <p>
-            3、价值1万元钻戒
-          </p>
-          <p>
-            恋爱合约自支付成功后次日零时起生效，本合约生效3年后且在约定的合约期内，签约人与心上人均为彼此在民政部门领取中华人民共和国结婚证的，签约人符合兑现要求的，可以提出如下兑现申请：
-          </p>
-          <p>
-            1、10001元现金
-          </p>
-          <p>
-            2、10001朵玫瑰花
-          </p>
-          <p>
-            3、价值1万元钻戒
-          </p>
-          <p>
-            恋爱合约自支付成功后次日零时起生效，本合约生效3年后且在约定的合约期内，签约人与心上人均为彼此在民政部门领取中华人民共和国结婚证的，签约人符合兑现要求的，可以提出如下兑现申请：
-          </p>
-          <p>
-            1、10001元现金
-          </p>
-          <p>
-            2、10001朵玫瑰花
-          </p>
-          <p>
-            3、价值1万元钻戒
-          </p>
+
+        <div class="rule_content">
+          <div class="rule_tab">
+            <div
+              class="rule_tab_item"
+              @click="handelClick(1)"
+              :class="ruleSelect === 1 ? 'rule_tab_item_active' : ''"
+            >
+              详情
+            </div>
+            <div
+              class="rule_tab_item"
+              @click="handelClick(2)"
+              :class="ruleSelect === 2 ? 'rule_tab_item_active' : ''"
+            >
+              须知
+            </div>
+          </div>
+          <div class="rule_detail"></div>
         </div>
-        <div class="rule" v-if="ruleSelect === 1">
-          <p>
-            须知须知须知须知须知须知须知须知
-          </p>
-          <p>
-            1、10001元现金
-          </p>
-          <p>
-            2、10001朵玫瑰花
-          </p>
-          <p>
-            3、价值1万元钻戒
-          </p>
-          <p>
-            恋爱合约自支付成功后次日零时起生效，本合约生效3年后且在约定的合约期内，签约人与心上人均为彼此在民政部门领取中华人民共和国结婚证的，签约人符合兑现要求的，可以提出如下兑现申请：
-          </p>
-          <p>
-            1、10001元现金
-          </p>
-          <p>
-            2、10001朵玫瑰花
-          </p>
-          <p>
-            3、价值1万元钻戒
-          </p>
-          <p>
-            恋爱合约自支付成功后次日零时起生效，本合约生效3年后且在约定的合约期内，签约人与心上人均为彼此在民政部门领取中华人民共和国结婚证的，签约人符合兑现要求的，可以提出如下兑现申请：
-          </p>
-          <p>
-            1、10001元现金
-          </p>
-          <p>
-            2、10001朵玫瑰花
-          </p>
-          <p>
-            3、价值1万元钻戒
-          </p>
-        </div>
+
         <div class="button_group">
           <span class="price">
-            ￥299元
+            299
           </span>
-          <van-button color="#F78297" class="sure_pay" to="ordel"
+          <van-button color="rgba(83, 105, 252, 1)" class="sure_pay" to="ordel"
             >签约</van-button
           >
         </div>
       </div>
     </van-popup>
-    <div class="shareContain" @click="handelClick(1)">
-      邀请好友最高享31%奖励
-    </div>
+    <div class="shareContain" @click="handelClick(1)"></div>
     <div class="title_group">
       <span class="title">活动公告</span>
       <span class="more">查看更多</span>
       <van-icon
         class="more"
         name="arrow"
-        color="rgba(153, 153, 153, 1)"
+        color="rgba(158, 165, 187, 1)"
         tag="span"
       />
     </div>
     <div class="my-swipe">
-      <van-swipe :autoplay="3000" indicator-color="white">
-        <van-swipe-item>1</van-swipe-item>
-        <van-swipe-item>2</van-swipe-item>
-        <van-swipe-item>3</van-swipe-item>
-        <van-swipe-item>4</van-swipe-item>
-      </van-swipe>
+      <div class="my-swipe-item">
+        <div class="item"></div>
+      </div>
+      <div class="my-swipe-item">
+        <div class="item"></div>
+      </div>
+      <div class="my-swipe-item">
+        <div class="item"></div>
+      </div>
     </div>
   </div>
 </template>
@@ -164,7 +103,7 @@
 export default {
   data() {
     return {
-      ruleSelect: 0,
+      ruleSelect: 1,
       showPicker: false,
       show: false,
       value: "学生(299)",
@@ -173,7 +112,7 @@ export default {
   },
   methods: {
     handelClick(i) {
-      console.log(i);
+      this.ruleSelect = i;
     },
     onConfirm(value) {
       this.value = value;
@@ -200,72 +139,59 @@ export default {
     color: rgba(247, 131, 153, 1);
   }
 }
-.rule_popup {
-  height: "463px";
-}
+// .rule_popup {
+//   height: "529px";
+// }
 .page_form {
-  width: 351px;
-  height: 205px;
+  width: 345px;
+  height: 228px;
   background: rgba(255, 255, 255, 1);
-  box-shadow: 0px 6px 13px 3px rgba(246, 222, 222, 0.51);
+  box-shadow: 0px 7px 21px 5px rgba(128, 136, 192, 0.12);
   border-radius: 10px;
   margin: 0 auto;
   margin-top: -186px;
   box-sizing: border-box;
-  padding: 15px 10px;
+  padding: 12px 23px 0px 23px;
   .form_title {
-    width: 331px;
-    height: 44px;
-    background: rgba(255, 255, 255, 1);
-    border: 1px solid rgba(247, 131, 153, 1);
-    border-radius: 5px;
-    font-size: 18px;
-    // font-family: Microsoft YaHei;
-    font-weight: 400;
-    text-align: center;
-    line-height: 44px;
-    color: rgba(51, 51, 51, 1);
-    margin-bottom: 10px;
-    position: relative;
-    .trans {
-      position: absolute;
-      right: 11px;
-      top: 50%;
-      margin-top: -7px;
-      width: 0;
-      height: 0;
-      border: 8px solid transparent;
-      border-top: 14px solid #f78399;
-    }
+    width: 300px;
+    height: 40px;
+    background: rgba(246, 247, 250, 1);
+    border-radius: 20px;
+    margin: 0 auto;
+    margin-top: 16px;
+    box-sizing: border-box;
+    padding-left: 30px;
+    line-height: 40px;
+    font-size: 16px;
+    font-family: PingFang SC;
+    font-weight: bold;
+    color: rgba(28, 36, 63, 1);
   }
   .sure {
-    width: 326px;
-    height: 44px;
-    border-radius: 22px;
-    margin-top: 20px;
-
+    width: 300px;
+    height: 45px;
+    background: rgba(83, 105, 252, 1);
+    box-shadow: 0px 4px 14px 4px rgba(83, 105, 252, 0.25);
+    border-radius: 23px;
+    margin: 0 auto;
+    margin-top: 27px;
     /deep/ .van-button__text {
-      color: #f78399;
-      font-size: 18px;
-      // font-family: Microsoft YaHei;
-      font-weight: 400;
+      font-size: 16px;
+      font-family: PingFang SC;
+      font-weight: bold;
+      color: rgba(255, 255, 255, 1);
     }
   }
 }
 .shareContain {
-  width: 351px;
-  height: 125px;
-  background: #ffffff;
-  border-radius: 20px;
-  background-image: url("~@/assets/image/share.png");
-  background-size: 100% 100%;
+  width: 345px;
+  height: 89px;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #5369fc;
   margin: 0 auto;
-  margin-top: 15px;
-  font-size: 23px;
-  text-align: center;
-  line-height: 125px;
-  font-weight: 400;
-  color: rgba(255, 255, 255, 1);
+  margin-top: 30px;
+  margin-bottom: 10px;
 }
 .title_group {
   width: 351px;
@@ -275,107 +201,137 @@ export default {
   align-items: center;
   justify-content: flex-end;
   .title {
-    font-size: 16px;
-    // font-family: Microsoft YaHei;
-    font-weight: 400;
-    color: rgba(0, 0, 0, 1);
+    font-size: 18px;
+    font-family: PingFang SC;
+    font-weight: bold;
+    color: rgba(28, 36, 63, 1);
     margin-right: auto;
   }
   .more {
     font-size: 14px;
     // font-family: Microsoft YaHei;
     font-weight: 400;
-    color: rgba(153, 153, 153, 1);
+    color: rgba(158, 165, 187, 1);
   }
 }
 .my-swipe {
-  width: 351px;
-  margin: 0 auto;
-  margin-bottom: 20px;
-  overflow: hidden;
-  border-radius: 10px;
-  .van-swipe-item {
-    color: #fff;
-    font-size: 20px;
-    line-height: 150px;
-    text-align: center;
-    background-color: #f6dede;
+  display: flex;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  box-sizing: border-box;
+  padding: 10px 0px 30px 0px;
+  .my-swipe-item {
+    display: flex;
+    margin-left: 15px;
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0px 8px 13px 7px rgba(141, 158, 187, 0.14);
+    border-radius: 10px;
+    .item {
+      width: 286px;
+      height: 110px;
+    }
   }
 }
 .rule_group {
   width: 100%;
   height: 100%;
   box-sizing: border-box;
-  background-color: #f7f7f7;
-  padding: 12px 12px 0px 12px;
+  background: rgba(255, 255, 255, 1);
+  padding: 10px 15px 0px 15px;
   h4 {
-    font-size: 23px;
-    // font-family: Microsoft YaHei;
-    font-weight: 400;
-    color: rgba(247, 130, 151, 1);
-    text-align: center;
-    margin-top: 10px;
-    margin-bottom: 20px;
+    font-size: 20px;
+    font-family: PingFang SC;
+    font-weight: bold;
+    color: rgba(28, 36, 63, 1);
+    margin: 20px 0px;
   }
-  p {
-    font-size: 13px;
-    // font-family: Microsoft YaHei;
-    font-weight: 400;
-    color: rgba(136, 136, 136, 1);
-    text-align: center;
-    margin-bottom: 13px;
-  }
-  .rule_select {
-    width: 100%;
-    height: 40px;
-    box-sizing: border-box;
-    border-bottom: 1px solid rgba(204, 204, 204, 1);
+  .date_warp {
+    width: 345px;
+    height: 70px;
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0px 7px 21px 5px rgba(128, 136, 192, 0.12);
+    border-radius: 10px;
     display: flex;
     align-items: center;
-    .rule_item {
-      height: 40px;
-      font-size: 13px;
-      line-height: 40px;
-      // // font-family: Microsoft YaHei;
-      font-weight: 400;
-      color: rgba(102, 102, 102, 1);
-      padding: 0px 10px;
-    }
-    .rule_item_active {
-      color: #f78297;
-      position: relative;
-      &::after {
-        position: absolute;
-        bottom: 0;
-        margin-top: 10px;
-        content: "";
-        width: 100%;
-        left: 0;
-        height: 1px;
-        background: #f78297;
+    justify-content: space-around;
+    .date_half {
+      width: 48%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      box-sizing: border-box;
+      justify-content: center;
+      padding-left: 18px;
+      .date_title {
+        font-size: 12px;
+        font-family: PingFang SC;
+        font-weight: 500;
+        color: rgba(28, 36, 63, 1);
+      }
+      .date_num {
+        font-size: 15px;
+        font-family: PingFang SC;
+        font-weight: bold;
+        color: rgba(83, 105, 252, 1);
+        margin-top: 9px;
       }
     }
   }
-  .rule {
-    width: 100%;
-    height: 246px;
-    overflow-y: scroll;
+  .rule_content {
+    width: 375px;
+    margin: 0 -15px;
+    height: 320px;
+    background: RGBA(248, 249, 253, 1);
+    margin-top: 22px;
+    overflow: hidden;
     box-sizing: border-box;
-    padding-top: 16px;
-    font-size: 13px;
-    font-family: Microsoft YaHei;
-    font-weight: 400;
-
-    color: rgba(153, 153, 153, 1);
-    p {
-      text-align: left;
-      line-height: 18px;
+    padding: 0px 15px;
+    .rule_tab {
+      margin: 18px 0px;
+      width: 100%;
+      height: auto;
+      display: flex;
+      align-items: center;
+      .rule_tab_item {
+        height: 30px;
+        font-size: 15px;
+        font-family: PingFang SC;
+        font-weight: bold;
+        margin-right: 42px;
+        color: rgba(158, 165, 187, 1);
+      }
+      .rule_tab_item_active {
+        position: relative;
+        color: rgba(28, 36, 63, 1);
+        &::after {
+          position: absolute;
+          content: "";
+          width: 20px;
+          height: 3px;
+          background: rgba(83, 105, 252, 1);
+          border-radius: 2px;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          margin: 0 auto;
+        }
+      }
+    }
+    .rule_detail {
+      width: 345px;
+      height: 238px;
+      background: rgba(255, 255, 255, 1);
+      border-radius: 5px;
+      box-sizing: border-box;
+      padding: 18px;
+      overflow-y: scroll;
     }
   }
   .button_group {
+    width: 375px;
     box-sizing: border-box;
     box-shadow: 0px 2px 18px 0px rgba(209, 209, 209, 0.35);
-    margin: 0px -12px;
+    margin: 0px -15px;
     height: 60px;
     background: rgba(255, 255, 255, 1);
     border-radius: 0px 0px 10px 10px;
@@ -384,15 +340,32 @@ export default {
     align-items: center;
     justify-content: space-between;
     .price {
-      font-size: 21px;
-      font-family: Microsoft YaHei;
-      font-weight: 400;
-      color: rgba(247, 130, 151, 1);
+      font-size: 20px;
+      font-family: PingFang SC;
+      font-weight: bold;
+      color: rgba(255, 123, 5, 1);
+      position: relative;
+      text-indent: 13px;
+      &::before {
+        position: absolute;
+        content: "￥";
+        font-size: 15px;
+        left: -15px;
+        bottom: 2px;
+      }
+      &::after {
+        position: absolute;
+        content: "元";
+        font-size: 15px;
+        right: -18px;
+        bottom: 2px;
+      }
     }
     .sure_pay {
-      width: 115px;
+      width: 107px;
       height: 40px;
-      background: rgba(247, 130, 151, 1);
+      background: rgba(83, 105, 252, 1);
+      box-shadow: 0px 4px 10px 2px rgba(83, 105, 252, 0.25);
       border-radius: 20px;
     }
   }

@@ -4,7 +4,7 @@
  * @Author       : zero
  * @Date         : 2020-07-14 14:02:37
  * @LastEditors  : zero
- * @LastEditTime : 2020-07-15 10:50:47
+ * @LastEditTime : 2020-08-03 17:30:02
 -->
 <template>
   <div id="app">
@@ -34,10 +34,11 @@ export default {
   margin: 0 auto;
 
   .page {
+    box-sizing: border-box;
     width: 100%;
     min-height: 100%;
     height: auto;
-    padding-bottom: 50px;
+    padding-bottom: 60px;
   }
 }
 ::-webkit-scrollbar {
