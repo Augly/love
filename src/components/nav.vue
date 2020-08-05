@@ -4,13 +4,15 @@
  * @Author       : zero
  * @Date         : 2020-08-03 15:47:07
  * @LastEditors  : zero
- * @LastEditTime : 2020-08-03 19:48:15
+ * @LastEditTime : 2020-08-05 16:17:36
 -->
 <template>
   <div class="nav_wrap">
-    <div class="nav_circle">
-      <div class="circle"></div>
-    </div>
+    <router-link :to="{ path: '/Inquire' }" exact tag="div">
+      <div class="nav_circle">
+        <div class="circle"></div>
+      </div>
+    </router-link>
     <div class="nav_bar">
       <router-link
         :to="{ path: '/index' }"

@@ -4,7 +4,7 @@
  * @Author       : zero
  * @Date         : 2020-07-15 11:52:55
  * @LastEditors  : zero
- * @LastEditTime : 2020-08-04 17:37:03
+ * @LastEditTime : 2020-08-05 15:39:28
 -->
 <template>
   <div>
@@ -18,25 +18,26 @@
     </div>
     <div class="personl_team">
       <div class="personl_item">
-        <p class="personl_item_num"></p>
-        <p class="personl_item_name"></p>
+        <p class="personl_item_num">664</p>
+        <p class="personl_item_name">我的团队</p>
       </div>
       <div class="personl_item">
-        <p class="personl_item_num"></p>
-        <p class="personl_item_name"></p>
+        <p class="personl_item_num">0</p>
+        <p class="personl_item_name">我的推广</p>
       </div>
       <div class="personl_item">
-        <p class="personl_item_num"></p>
-        <p class="personl_item_name"></p>
+        <p class="personl_item_num">544</p>
+        <p class="personl_item_name">我的佣金</p>
       </div>
     </div>
+    <h4 class="title">我的信息</h4>
     <div class="link_group">
       <van-cell title="我的合约" is-link to="index" />
-      <van-cell title="我的推广" is-link to="index" />
-      <van-cell title="我的钱包" is-link to="index" />
+      <van-cell title="邀请好友" is-link to="index" />
+      <van-cell title="我的订单" is-link to="index" />
       <van-cell title="联系客服" is-link to="index" />
       <van-cell title="联系地址" is-link to="index" />
-      <van-cell title="推荐好友" is-link to="index" />
+      <van-cell title="联系客服" is-link to="index" />
     </div>
   </div>
 </template>
@@ -52,6 +53,7 @@ export default {};
     font-size: 20px;
     font-family: PingFang SC;
     font-weight: bold;
+    text-align: center;
     color: rgba(28, 36, 63, 1);
   }
   .head_avater {
@@ -92,7 +94,31 @@ export default {};
   .personl_item {
     flex: 1;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    .personl_item_num {
+      font-size: 18px;
+      font-family: PingFang SC;
+      font-weight: bold;
+      color: rgba(28, 36, 63, 1);
+    }
+    .personl_item_name {
+      font-size: 13px;
+      font-family: PingFang SC;
+      font-weight: 500;
+      color: rgba(132, 139, 164, 1);
+      margin-top: 12px;
+    }
   }
+}
+.title {
+  font-size: 18px;
+  font-family: PingFang SC;
+  font-weight: bold;
+  color: rgba(28, 36, 63, 1);
+  text-indent: 15px;
 }
 .page_head {
   width: 100%;
@@ -119,10 +145,14 @@ export default {};
   }
 }
 .link_group {
-  width: 100%;
+  width: 346px;
   height: auto;
   background: rgba(255, 255, 255, 1);
-  border-radius: 10px;
+  box-shadow: 0px 7px 21px 5px rgba(128, 136, 192, 0.12);
+  border-radius: 5px;
+  margin: 0 auto;
+  margin-top: 22px;
+  overflow: hidden;
   // margin-top: -40px;
   // padding-top: 45px;
 }

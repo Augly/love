@@ -4,13 +4,11 @@
  * @Author       : zero
  * @Date         : 2020-07-14 15:20:25
  * @LastEditors  : zero
- * @LastEditTime : 2020-08-03 18:50:59
+ * @LastEditTime : 2020-08-05 15:48:35
 -->
 <template>
   <div>
-    <div class="page_head">
-      <h4>JOJO恋爱合约</h4>
-    </div>
+    <div class="page_head"></div>
     <div class="page_form">
       <div class="form_title">恋爱合约</div>
       <div class="form_title" @click="showPicker = true">
@@ -68,7 +66,10 @@
           <span class="price">
             299
           </span>
-          <van-button color="rgba(83, 105, 252, 1)" class="sure_pay" to="ordel"
+          <van-button
+            color="rgba(83, 105, 252, 1)"
+            class="sure_pay"
+            to="protocol"
             >签约</van-button
           >
         </div>
@@ -130,7 +131,9 @@ export default {
   padding: 0 23px;
   background-image: url("~@/assets/image/bg.png");
   background-size: 100%;
-  background-position: bottom;
+  background-position: top;
+  background-repeat: no-repeat;
+
   h4 {
     line-height: 120px;
     font-size: 28px;
@@ -149,7 +152,7 @@ export default {
   box-shadow: 0px 7px 21px 5px rgba(128, 136, 192, 0.12);
   border-radius: 10px;
   margin: 0 auto;
-  margin-top: -186px;
+  margin-top: -165px;
   box-sizing: border-box;
   padding: 12px 23px 0px 23px;
   .form_title {

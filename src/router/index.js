@@ -4,7 +4,7 @@
  * @Author       : zero
  * @Date         : 2020-07-14 14:02:37
  * @LastEditors  : zero
- * @LastEditTime : 2020-07-15 11:53:20
+ * @LastEditTime : 2020-08-05 16:15:56
  */
 
 import Vue from "vue";
@@ -45,6 +45,20 @@ const routes = [
         meta: { title: "提交订单" },
         component: () =>
           import(/* webpackChunkName: "ordel" */ "@/views/ordel.vue")
+      },
+      {
+        path: "/protocol",
+        name: "protocol",
+        meta: { title: "签约协议" },
+        component: () =>
+          import(/* webpackChunkName: "ordel" */ "@/views/protocol.vue")
+      },
+      {
+        path: "/Inquire",
+        name: "Inquire",
+        meta: { title: "查询合约" },
+        component: () =>
+          import(/* webpackChunkName: "ordel" */ "@/views/Inquire.vue")
       }
     ]
   }
