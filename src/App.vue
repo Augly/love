@@ -1,10 +1,11 @@
+import { import } from '@babel/types';
 <!--
  * @Descripttion : 
  * @version      : 
  * @Author       : zero
  * @Date         : 2020-07-14 14:02:37
  * @LastEditors  : zero
- * @LastEditTime : 2020-08-03 17:30:02
+ * @LastEditTime : 2020-08-07 22:46:57
 -->
 <template>
   <div id="app">
@@ -22,6 +23,10 @@ export default {
 </script>
 
 <style lang="less">
+.f17 {
+  font-size: 17px !important;
+  margin-right: 6px;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

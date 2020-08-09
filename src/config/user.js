@@ -4,7 +4,7 @@
  * @Author       : zero
  * @Date         : 2020-07-14 14:38:03
  * @LastEditors  : zero
- * @LastEditTime : 2020-07-15 12:51:07
+ * @LastEditTime : 2020-08-09 13:48:11
  */
 import Vue from "vue";
 import {
@@ -26,9 +26,21 @@ import {
   Cell,
   CellGroup,
   SwipeItem,
-  Toast
+  Toast,
+  Divider,
+  Circle,
+  AddressList,
+  AddressEdit,
+  List,
+  Tag
 } from "vant";
+Vue.use(Tag);
+Vue.use(List);
+Vue.use(AddressEdit);
+Vue.use(AddressList);
+Vue.use(Divider);
 Vue.use(Cell);
+Vue.use(Circle);
 Vue.use(Lazyload);
 Vue.use(VanImage);
 Vue.use(CellGroup);

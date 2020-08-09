@@ -4,15 +4,23 @@
  * @Author       : zero
  * @Date         : 2020-07-14 15:20:25
  * @LastEditors  : zero
- * @LastEditTime : 2020-08-05 15:48:35
+ * @LastEditTime : 2020-08-07 22:55:59
 -->
 <template>
   <div>
     <div class="page_head"></div>
     <div class="page_form">
-      <div class="form_title">恋爱合约</div>
+      <div class="form_title">
+        <span>恋爱合约</span>
+      </div>
       <div class="form_title" @click="showPicker = true">
-        {{ value }}
+        <span>{{ value }}</span>
+        <van-icon
+          color="#7180B0"
+          class="iconfont"
+          class-prefix="iconxiala3"
+          name="iconxiala3"
+        />
       </div>
       <van-button color="#5369FC" class="sure" @click="show = true"
         >签订合约</van-button
@@ -169,6 +177,13 @@ export default {
     font-family: PingFang SC;
     font-weight: bold;
     color: rgba(28, 36, 63, 1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .iconfont {
+      font-size: 16px;
+      margin-right: 20px;
+    }
   }
   .sure {
     width: 300px;

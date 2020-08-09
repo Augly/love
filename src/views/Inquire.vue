@@ -4,13 +4,45 @@
  * @Author       : zero
  * @Date         : 2020-08-05 16:10:10
  * @LastEditors  : zero
- * @LastEditTime : 2020-08-05 17:14:58
+ * @LastEditTime : 2020-08-07 23:19:53
 -->
 <template>
   <div>
     <div class="form_content">
-      <div class="input_wrap"></div>
-      <div class="input_wrap"></div>
+      <div class="input_wrap">
+        <van-field
+          v-model="value"
+          label-width="80px"
+          label="合约编码"
+          placeholder="请输入用户名"
+          style="background-color:#F4F6F9;line-height:25px;"
+        >
+          <template #left-icon>
+            <van-icon
+              class="iconfont"
+              class-prefix="iconbanjianbianma"
+              name="iconbanjianbianma"
+            />
+          </template>
+        </van-field>
+      </div>
+      <div class="input_wrap">
+        <van-field
+          v-model="value"
+          label-width="80px"
+          label="身份证号"
+          placeholder="请输入用户名"
+          style="background-color:#F4F6F9"
+        >
+          <template #left-icon>
+            <van-icon
+              class="iconfont"
+              class-prefix="iconshenfenzheng"
+              name="iconshenfenzheng"
+            />
+          </template>
+        </van-field>
+      </div>
     </div>
     <van-button color="#5369FC" class="sure">查询</van-button>
     <div class="rules">
@@ -41,6 +73,11 @@ export default {};
     border-radius: 5px;
     margin: 0 auto;
     margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    .iconfont {
+      margin-right: 8px;
+    }
   }
 }
 .sure {

@@ -4,7 +4,7 @@
  * @Author       : zero
  * @Date         : 2020-07-15 11:52:55
  * @LastEditors  : zero
- * @LastEditTime : 2020-08-05 15:39:28
+ * @LastEditTime : 2020-08-09 13:35:55
 -->
 <template>
   <div>
@@ -17,33 +17,82 @@
       <p class="head_phone">13478956985</p>
     </div>
     <div class="personl_team">
-      <div class="personl_item">
+      <div class="personl_item" @click="toMyTeam">
         <p class="personl_item_num">664</p>
         <p class="personl_item_name">我的团队</p>
       </div>
-      <div class="personl_item">
-        <p class="personl_item_num">0</p>
-        <p class="personl_item_name">我的推广</p>
-      </div>
-      <div class="personl_item">
+      <div class="personl_item" @click="toMPromote">
         <p class="personl_item_num">544</p>
         <p class="personl_item_name">我的佣金</p>
       </div>
     </div>
     <h4 class="title">我的信息</h4>
     <div class="link_group">
-      <van-cell title="我的合约" is-link to="index" />
-      <van-cell title="邀请好友" is-link to="index" />
-      <van-cell title="我的订单" is-link to="index" />
-      <van-cell title="联系客服" is-link to="index" />
-      <van-cell title="联系地址" is-link to="index" />
-      <van-cell title="联系客服" is-link to="index" />
+      <van-cell title="我的合约" is-link to="index">
+        <template #icon>
+          <van-icon
+            color="#5369FC"
+            class="iconfont f17"
+            class-prefix="iconheyue1"
+            name="iconheyue1"
+          />
+        </template>
+      </van-cell>
+      <van-cell title="邀请好友" is-link to="index">
+        <template #icon>
+          <van-icon
+            color="#5369FC"
+            class="iconfont f17"
+            class-prefix="iconyaoqing"
+            name="iconyaoqing"
+          />
+        </template>
+      </van-cell>
+      <van-cell title="我的订单" is-link to="index">
+        <template #icon>
+          <van-icon
+            color="#5369FC"
+            class="iconfont f17"
+            class-prefix="iconheyue"
+            name="iconheyue"
+          />
+        </template>
+      </van-cell>
+      <van-cell title="联系地址" is-link to="addList">
+        <template #icon>
+          <van-icon
+            color="#5369FC"
+            class="iconfont f17"
+            class-prefix="icondizhi1"
+            name="icondizhi1"
+          />
+        </template>
+      </van-cell>
+      <van-cell title="联系客服" is-link to="index">
+        <template #icon>
+          <van-icon
+            color="#5369FC"
+            class="iconfont f17"
+            class-prefix="iconxinbaniconshangchuan-"
+            name="iconxinbaniconshangchuan-"
+          />
+        </template>
+      </van-cell>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  methods: {
+    toMyTeam() {
+      this.$router.push("/team");
+    },
+    toMPromote() {
+      this.$router.push("/promote");
+    }
+  }
+};
 </script>
 <style lang="less" scoped>
 .head_info {

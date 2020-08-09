@@ -1,16 +1,22 @@
+import { import } from '@babel/types';
 <!--
  * @Descripttion : 
  * @version      : 
  * @Author       : zero
  * @Date         : 2020-08-03 15:47:07
  * @LastEditors  : zero
- * @LastEditTime : 2020-08-05 16:17:36
+ * @LastEditTime : 2020-08-07 22:52:03
 -->
 <template>
   <div class="nav_wrap">
     <router-link :to="{ path: '/Inquire' }" exact tag="div">
       <div class="nav_circle">
-        <div class="circle"></div>
+        <van-icon
+          color="#5369FC"
+          class="iconfont"
+          class-prefix="icondingdan"
+          name="icondingdan"
+        />
       </div>
     </router-link>
     <div class="nav_bar">
@@ -22,6 +28,11 @@
         class="nav_item"
         exact-active-class="nav_item_active"
       >
+        <van-icon
+          class="iconfont f17"
+          class-prefix="iconshouye2"
+          name="iconshouye2"
+        />
         <span>首页</span>
       </router-link>
       <div class="nav_text">查询合约</div>
@@ -32,7 +43,13 @@
         tag="div"
         class="nav_item"
         exact-active-class="nav_item_active"
-        ><span>我的</span>
+      >
+        <van-icon
+          class="iconfont f17"
+          class-prefix="iconyonghuguanli2"
+          name="iconyonghuguanli2"
+        />
+        <span>我的</span>
       </router-link>
     </div>
   </div>
@@ -63,14 +80,12 @@ export default {};
     background: rgba(255, 255, 255, 1);
     box-shadow: 0px -15px 10px 0px rgba(122, 132, 204, 0.06);
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    .circle {
-      width: 48px;
-      height: 48px;
-      background: rgba(83, 105, 252, 1);
-      border-radius: 50%;
+    // display: flex;
+    // align-items: center;
+    // justify-content: center;
+    line-height: 60px;
+    .iconfont {
+      font-size: 48px !important;
     }
   }
   .nav_bar {
@@ -97,6 +112,9 @@ export default {};
       color: rgba(176, 181, 200, 1);
       text-align: center;
       line-height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     .nav_item_active {
       background: rgba(41, 109, 255, 0.05);
