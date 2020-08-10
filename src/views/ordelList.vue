@@ -4,7 +4,7 @@
  * @Author       : zero
  * @Date         : 2020-08-09 15:24:02
  * @LastEditors  : zero
- * @LastEditTime : 2020-08-10 16:15:33
+ * @LastEditTime : 2020-08-10 21:20:07
 -->
 <template>
   <div>
@@ -13,24 +13,27 @@
       <div class="tabBar_item">进行中</div>
       <div class="tabBar_item">已完成</div>
     </div>
-    <van-empty class="custom-image" :image="nodata" description="暂无订单" />
+    <van-empty
+      class="custom-image"
+      :image="nodata"
+      description="暂无订单"
+      v-if="list.length === 0"
+    />
     <div style="margin-top:60px; overflow: hidden;padding-bottom:20px;">
-      <div class="item">
+      <div class="item" v-for="item in list" :key="item.id">
         <div class="item_head">
           <div class="item_time_data">
-            <p class="item_time_data_title">编号：1548945156151</p>
-            <p class="item_time">2020-07-20 00:00:00</p>
+            <p class="item_time_data_title">编号：{{ item.no }}</p>
+            <p class="item_time">{{ item.created_at }}</p>
           </div>
           <span class="status">签约完成</span>
         </div>
         <van-divider />
         <div class="item_content">
-          <p class="content">
-            吃饭、看电影、逛街、吃饭、看电影、逛街吃饭、 看电影、逛街
-          </p>
+          <p class="content">{{ item.name }} & {{ item.love_name }}</p>
           <div class="price_group">
             <span class="price_title">总金额：</span>
-            <span class="price">￥145</span>
+            <span class="price">￥{{ item.paid_at }}</span>
           </div>
         </div>
         <van-divider />
@@ -38,39 +41,33 @@
           去付款
         </van-button>
       </div>
-      <div class="item">
-        <div class="item_head">
-          <div class="item_time_data">
-            <p class="item_time_data_title">编号：1548945156151</p>
-            <p class="item_time">2020-07-20 00:00:00</p>
-          </div>
-          <span class="status">签约完成</span>
-        </div>
-        <van-divider />
-        <div class="item_content">
-          <p class="content">
-            吃饭、看电影、逛街、吃饭、看电影、逛街吃饭、 看电影、逛街
-          </p>
-          <div class="price_group">
-            <span class="price_title">总金额：</span>
-            <span class="price">￥145</span>
-          </div>
-        </div>
-        <van-divider />
-        <van-button type="default" round size="small" class="pay">
-          去解约
-        </van-button>
-      </div>
     </div>
   </div>
 </template>
 
 <script>
+import { getList } from "@/api/ordel.js";
 export default {
   data() {
     return {
+      list: [],
       nodata: require("@/assets/image/noOrdel.png")
     };
+  },
+  created() {
+    this.getList();
+  },
+  methods: {
+    getList() {
+      getList({})
+        .then(result => {
+          if (result) {
+            this.list = result.data;
+            console.log(result);
+          }
+        })
+        .catch(() => {});
+    }
   }
 };
 </script>

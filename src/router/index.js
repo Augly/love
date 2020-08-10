@@ -4,7 +4,7 @@
  * @Author       : zero
  * @Date         : 2020-07-14 14:02:37
  * @LastEditors  : zero
- * @LastEditTime : 2020-08-10 16:01:36
+ * @LastEditTime : 2020-08-10 21:32:18
  */
 
 import Vue from "vue";
@@ -144,7 +144,7 @@ const routes = [
           import(/* webpackChunkName: "ordelList" */ "@/views/ordelList.vue")
       },
       {
-        path: "/contractDetails",
+        path: "/contractDetails/:id",
         name: "contractDetails",
         meta: { title: "合约详情" },
         component: () =>

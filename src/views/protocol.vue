@@ -4,13 +4,13 @@
  * @Author       : zero
  * @Date         : 2020-08-05 15:45:45
  * @LastEditors  : zero
- * @LastEditTime : 2020-08-05 16:03:19
+ * @LastEditTime : 2020-08-10 21:01:14
 -->
 <template>
-  <div class="content">
+  <div class="content" v-if="details">
     <div class="main">
-      <h4 class="title">恋爱合约签署</h4>
-      <div class="page_Content"></div>
+      <h4 class="title">{{ details.title }}</h4>
+      <div class="page_Content" v-html="details.content"></div>
     </div>
     <div class="button_scope">
       <van-button
@@ -28,7 +28,30 @@
 </template>
 
 <script>
-export default {};
+import { getDetail } from "@/api/config.js";
+export default {
+  data() {
+    return {
+      details: null
+    };
+  },
+  created() {
+    this.getDetail();
+  },
+  methods: {
+    getDetail() {
+      getDetail({
+        type: 1
+      })
+        .then(result => {
+          if (result) {
+            this.details = result.data;
+          }
+        })
+        .catch(() => {});
+    }
+  }
+};
 </script>
 
 <style lang="less" scoped>
@@ -55,6 +78,7 @@ export default {};
     right: 0;
     margin: 0 auto;
     display: flex;
+    background-color: rgba(255, 255, 255, 1);
     align-items: center;
     justify-content: space-around;
     box-shadow: 0px -15px 10px 0px rgba(122, 132, 204, 0.06);

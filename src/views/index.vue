@@ -5,14 +5,18 @@ import { import } from '@babel/types';
  * @Author       : zero
  * @Date         : 2020-07-14 15:20:25
  * @LastEditors  : zero
- * @LastEditTime : 2020-08-10 18:00:40
+ * @LastEditTime : 2020-08-10 20:54:59
 -->
 <template>
-  <div>
-    <img :src="config.index[0].image" alt="" srcset="" class="page_head" />
+  <div v-if="config && selectItem">
+    <van-image
+      :src="config.index[0].image || ''"
+      fit="cover"
+      class="page_head"
+    />
     <div class="page_form">
       <div class="form_title">
-        <span>恋爱合约</span>
+        <span>{{ selectItem.title }}</span>
       </div>
       <div class="form_title" @click="showPicker = true">
         <span>{{ value }}</span>
@@ -32,14 +36,24 @@ import { import } from '@babel/types';
       <van-picker
         title="请选择合约金额"
         show-toolbar
-        :columns="columns"
+        :columns="
+          columns.map(item => {
+            return item.duration;
+          })
+        "
         @cancel="showPicker = false"
         @confirm="onConfirm"
       />
     </van-popup>
-    <van-popup v-model="show" round position="bottom" class="rule_popup">
+    <van-popup
+      v-model="show"
+      round
+      position="bottom"
+      class="rule_popup"
+      v-if="selectItem"
+    >
       <div class="rule_group">
-        <h4>恋爱合约</h4>
+        <h4>{{ selectItem.title }}</h4>
         <div class="date_warp">
           <div class="date_half">
             <p class="date_title">定制日期</p>
@@ -68,12 +82,15 @@ import { import } from '@babel/types';
               须知
             </div>
           </div>
-          <div class="rule_detail"></div>
+          <div
+            class="rule_detail"
+            v-html="ruleSelect === 1 ? selectItem.details : selectItem.notice"
+          ></div>
         </div>
 
         <div class="button_group">
           <span class="price">
-            299
+            {{ selectItem.price }}
           </span>
           <van-button
             color="rgba(83, 105, 252, 1)"
@@ -84,10 +101,9 @@ import { import } from '@babel/types';
         </div>
       </div>
     </van-popup>
-    <img
-      :src="config.ad[0].image"
-      alt=""
-      srcset=""
+    <van-image
+      :src="config.ad[0].image || ''"
+      fit="cover"
       class="shareContain"
       @click="handelClick(1)"
     />
@@ -102,32 +118,29 @@ import { import } from '@babel/types';
       />
     </div>
     <div class="my-swipe">
-      <div class="my-swipe-item">
+      <div class="my-swipe-item" v-for="item in activelist" :key="item.id">
         <div class="item">
           <!-- <img :src="config.ad[0].image" alt="" srcset="" />-->
         </div>
-      </div>
-      <div class="my-swipe-item">
-        <div class="item"></div>
-      </div>
-      <div class="my-swipe-item">
-        <div class="item"></div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { getSite } from "@/api/config.js";
+import { getSite, getList, patternGetList } from "@/api/config.js";
 import { mapState, mapActions } from "vuex";
+import { findDict } from "@/utils/utils.js";
 export default {
   data() {
     return {
       ruleSelect: 1,
       showPicker: false,
       show: false,
-      value: "学生(299)",
-      columns: ["学生(299)", "军人(399)"]
+      value: "",
+      columns: [],
+      selectItem: null,
+      activelist: []
     };
   },
   computed: {
@@ -135,11 +148,15 @@ export default {
       config: state => state.config
     })
   },
-  mounted() {
+  created() {
     this.getSiteData();
+    this.getActiveList();
+    this.patternGetList();
   },
+  mounted() {},
   methods: {
     ...mapActions(["setConfig"]),
+    //web config
     getSiteData() {
       getSite({})
         .then(result => {
@@ -155,11 +172,39 @@ export default {
         })
         .catch(() => {});
     },
+    //active list
+    getActiveList() {
+      getList({
+        type: 1,
+        page: 1
+      })
+        .then(result => {
+          console.log(result);
+          if (result) {
+            console.log(result.data.data);
+            this.activelist = result.data.data;
+          }
+        })
+        .catch(() => {});
+    },
+    //pattern list
+    patternGetList() {
+      patternGetList()
+        .then(result => {
+          if (result) {
+            this.columns = result.data;
+            this.value = this.columns[0].duration;
+            this.selectItem = result.data[0];
+          }
+        })
+        .catch(() => {});
+    },
     handelClick(i) {
       this.ruleSelect = i;
     },
     onConfirm(value) {
       this.value = value;
+      this.selectItem = findDict(this.columns, value, "duration");
       this.showPicker = false;
     }
   }

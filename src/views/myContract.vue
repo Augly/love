@@ -4,15 +4,25 @@
  * @Author       : zero
  * @Date         : 2020-08-10 15:46:38
  * @LastEditors  : zero
- * @LastEditTime : 2020-08-10 16:18:36
+ * @LastEditTime : 2020-08-10 21:30:11
 -->
 <template>
   <div>
-    <van-empty class="custom-image" :image="nodata" description="暂无活动" />
-    <div class="item">
+    <van-empty
+      class="custom-image"
+      :image="nodata"
+      description="暂无活动"
+      v-if="list.length === 0"
+    />
+    <div
+      class="item"
+      v-for="item in list"
+      :key="item.id"
+      @click="$router.push(`/contractDetails/${item.id}`)"
+    >
       <div class="item_head">
         <van-image src="" fit="contain" width="44px" height="44px" round />
-        <span class="item_name">彭于晏</span>
+        <span class="item_name">{{ item.name }}</span>
         <span class="item_name_user">
           <van-icon
             color="#FF3B69"
@@ -20,7 +30,7 @@
             class-prefix="icon079aiqing"
             name="icon079aiqing"
             style="margin-right:5px;"
-          />小燕子</span
+          />{{ item.love_name }}</span
         >
         <van-button color="rgba(83, 105, 252, 1)" class="sure"
           >解除合约</van-button
@@ -31,25 +41,25 @@
         <span class="title">
           心上人姓名:
         </span>
-        小燕子
+        {{ item.love_name }}
       </p>
       <p class="item_p">
         <span class="title">
           合约编号:
         </span>
-        13464987946546565
+        {{ item.no }}
       </p>
       <p class="item_p">
         <span class="title">
           身份证号:
         </span>
-        154785968748956
+        {{ item.love_idcard }}
       </p>
       <p class="item_p">
         <span class="title">
           签约时间:
         </span>
-        2020-07-27 16:00:00:00
+        {{ item.begin_at }}
       </p>
       <div class="item_tip">
         <van-icon
@@ -66,11 +76,29 @@
 </template>
 
 <script>
+import { getContractList } from "@/api/ordel.js";
+
 export default {
   data() {
     return {
+      list: [],
       nodata: require("@/assets/image/noactive.png")
     };
+  },
+  created() {
+    this.getList();
+  },
+  methods: {
+    getList() {
+      getContractList({})
+        .then(result => {
+          if (result) {
+            this.list = result.data;
+            console.log(result);
+          }
+        })
+        .catch(() => {});
+    }
   }
 };
 </script>

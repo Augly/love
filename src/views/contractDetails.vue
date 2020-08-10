@@ -4,14 +4,14 @@
  * @Author       : zero
  * @Date         : 2020-08-09 18:20:04
  * @LastEditors  : zero
- * @LastEditTime : 2020-08-09 22:26:08
+ * @LastEditTime : 2020-08-10 22:16:06
 -->
 <template>
-  <div>
+  <div v-if="detail">
     <div class="love_personl">
       <van-image src="" fit="contain" width="50px" height="50px" round />
       <div class="love_content">
-        <p class="name">刘伟</p>
+        <p class="name">{{ detail.name }}</p>
         <p class="join_time">加入时间：2020-07-31</p>
       </div>
 
@@ -22,7 +22,7 @@
           class-prefix="icon079aiqing"
           name="icon079aiqing"
           style="margin-right:5px;"
-        />小燕子</span
+        />{{ detail.love_name }}</span
       >
     </div>
     <div class="love_info">
@@ -30,13 +30,13 @@
         <span>
           合约编号:
         </span>
-        13464987946546565
+        {{ detail.no }}
       </p>
       <p class="love_info_list">
         <span>
           身份证号:
         </span>
-        154785968748956
+        {{ detail.idcard }}
       </p>
       <p class="love_info_list">
         <span>
@@ -58,12 +58,44 @@
       </span>
       恋爱合约自支付成功后次日零时起生效,本合约生效3年后且在约定的合约期内，签约人与心上人均为除此在民政部门领取中华人民共和国结婚证的,签约人符合兑现要求的。
     </div>
-    <van-button class="sure">销毁合约</van-button>
+    <van-button class="sure" @click="liftContract">销毁合约</van-button>
   </div>
 </template>
 
 <script>
-export default {};
+import { getContractDetail, liftContract } from "@/api/ordel.js";
+export default {
+  data() {
+    return {
+      detail: null
+    };
+  },
+  created() {
+    this.getDetails();
+  },
+  methods: {
+    getDetails() {
+      getContractDetail({ order_id: this.$route.params.id })
+        .then(result => {
+          if (result) {
+            this.detail = result.data;
+          }
+        })
+        .catch(() => {});
+    },
+    liftContract() {
+      liftContract({
+        order_id: this.detail.id
+      })
+        .then(result => {
+          if (result) {
+            console.log(result);
+          }
+        })
+        .catch(() => {});
+    }
+  }
+};
 </script>
 <style lang="less" scoped>
 .love_personl {
