@@ -4,7 +4,7 @@
  * @Author       : zero
  * @Date         : 2020-08-09 15:24:02
  * @LastEditors  : zero
- * @LastEditTime : 2020-08-09 18:16:12
+ * @LastEditTime : 2020-08-10 16:15:33
 -->
 <template>
   <div>
@@ -13,6 +13,7 @@
       <div class="tabBar_item">进行中</div>
       <div class="tabBar_item">已完成</div>
     </div>
+    <van-empty class="custom-image" :image="nodata" description="暂无订单" />
     <div style="margin-top:60px; overflow: hidden;padding-bottom:20px;">
       <div class="item">
         <div class="item_head">
@@ -65,10 +66,19 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      nodata: require("@/assets/image/noOrdel.png")
+    };
+  }
+};
 </script>
 
 <style lang="less" scoped>
+.custom-image {
+  margin-top: 150px;
+}
 .tabBar {
   width: 100%;
   height: 60px;

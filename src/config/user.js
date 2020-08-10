@@ -4,7 +4,7 @@
  * @Author       : zero
  * @Date         : 2020-07-14 14:38:03
  * @LastEditors  : zero
- * @LastEditTime : 2020-08-09 13:48:11
+ * @LastEditTime : 2020-08-10 16:12:09
  */
 import Vue from "vue";
 import {
@@ -32,8 +32,10 @@ import {
   AddressList,
   AddressEdit,
   List,
-  Tag
+  Tag,
+  Empty
 } from "vant";
+Vue.use(Empty);
 Vue.use(Tag);
 Vue.use(List);
 Vue.use(AddressEdit);

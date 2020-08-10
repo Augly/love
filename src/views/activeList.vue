@@ -4,7 +4,7 @@
  * @Author       : zero
  * @Date         : 2020-08-09 13:38:03
  * @LastEditors  : zero
- * @LastEditTime : 2020-08-09 13:55:56
+ * @LastEditTime : 2020-08-10 16:17:42
 -->
 <template>
   <van-list
@@ -13,6 +13,7 @@
     finished-text="没有更多了"
     @load="onLoad"
   >
+    <van-empty class="custom-image" :image="nodata" description="暂无活动" />
     <div class="items" v-for="item in list" :key="item" :title="item">
       <p class="time">12121</p>
       <div class="item">
@@ -38,6 +39,7 @@
 export default {
   data() {
     return {
+      nodata: require("@/assets/image/noactive.png"),
       list: [],
       loading: false,
       finished: false
@@ -66,6 +68,9 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.custom-image {
+  margin-top: 150px;
+}
 .items {
   width: 100%;
   height: auto;

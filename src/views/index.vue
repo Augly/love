@@ -1,14 +1,15 @@
 <!--
+import { import } from '@babel/types';
  * @Descripttion : 
  * @version      : 
  * @Author       : zero
  * @Date         : 2020-07-14 15:20:25
  * @LastEditors  : zero
- * @LastEditTime : 2020-08-07 22:55:59
+ * @LastEditTime : 2020-08-10 18:00:40
 -->
 <template>
   <div>
-    <div class="page_head"></div>
+    <img :src="config.index[0].image" alt="" srcset="" class="page_head" />
     <div class="page_form">
       <div class="form_title">
         <span>恋爱合约</span>
@@ -83,7 +84,13 @@
         </div>
       </div>
     </van-popup>
-    <div class="shareContain" @click="handelClick(1)"></div>
+    <img
+      :src="config.ad[0].image"
+      alt=""
+      srcset=""
+      class="shareContain"
+      @click="handelClick(1)"
+    />
     <div class="title_group">
       <span class="title">活动公告</span>
       <span class="more">查看更多</span>
@@ -96,7 +103,9 @@
     </div>
     <div class="my-swipe">
       <div class="my-swipe-item">
-        <div class="item"></div>
+        <div class="item">
+          <!-- <img :src="config.ad[0].image" alt="" srcset="" />-->
+        </div>
       </div>
       <div class="my-swipe-item">
         <div class="item"></div>
@@ -109,6 +118,8 @@
 </template>
 
 <script>
+import { getSite } from "@/api/config.js";
+import { mapState, mapActions } from "vuex";
 export default {
   data() {
     return {
@@ -119,7 +130,31 @@ export default {
       columns: ["学生(299)", "军人(399)"]
     };
   },
+  computed: {
+    ...mapState({
+      config: state => state.config
+    })
+  },
+  mounted() {
+    this.getSiteData();
+  },
   methods: {
+    ...mapActions(["setConfig"]),
+    getSiteData() {
+      getSite({})
+        .then(result => {
+          console.log(result);
+          if (result) {
+            this.setConfig({
+              contact_mobile: result.data.contact_mobile,
+              contact_wechat: result.data.contact_wechat,
+              ad: result.data.slides.ad,
+              index: result.data.slides.index
+            });
+          }
+        })
+        .catch(() => {});
+    },
     handelClick(i) {
       this.ruleSelect = i;
     },
@@ -136,12 +171,8 @@ export default {
   width: 375px;
   height: 306px;
   box-sizing: border-box;
-  padding: 0 23px;
-  background-image: url("~@/assets/image/bg.png");
-  background-size: 100%;
-  background-position: top;
-  background-repeat: no-repeat;
-
+  display: block;
+  z-index: -1;
   h4 {
     line-height: 120px;
     font-size: 28px;
@@ -154,6 +185,9 @@ export default {
 //   height: "529px";
 // }
 .page_form {
+  position: absolute;
+  left: 0;
+  right: 0;
   width: 345px;
   height: 228px;
   background: rgba(255, 255, 255, 1);
@@ -202,13 +236,14 @@ export default {
   }
 }
 .shareContain {
+  display: block;
   width: 345px;
   height: 89px;
   border-radius: 10px;
   overflow: hidden;
-  background-color: #5369fc;
+  // background-color: #5369fc;
   margin: 0 auto;
-  margin-top: 30px;
+  margin-top: 90px;
   margin-bottom: 10px;
 }
 .title_group {

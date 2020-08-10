@@ -4,7 +4,7 @@
  * @Author       : zero
  * @Date         : 2020-07-15 11:52:55
  * @LastEditors  : zero
- * @LastEditTime : 2020-08-09 13:35:55
+ * @LastEditTime : 2020-08-10 17:05:44
 -->
 <template>
   <div>
@@ -83,7 +83,20 @@
 </template>
 
 <script>
+import { getSite } from "@/api/config.js";
 export default {
+  mounted() {
+    console.log(1);
+    getSite({})
+      .then(() => {})
+      .catch(err => {
+        console.log(err);
+      })
+      .finally(() => {
+        console.log(2);
+      });
+    // this.getSiteData();
+  },
   methods: {
     toMyTeam() {
       this.$router.push("/team");

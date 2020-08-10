@@ -4,7 +4,7 @@
  * @Author       : zero
  * @Date         : 2020-07-14 14:31:44
  * @LastEditors  : zero
- * @LastEditTime : 2020-07-14 22:04:19
+ * @LastEditTime : 2020-08-10 17:41:32
  */
 const path = require("path");
 function resolve(dir) {
@@ -44,23 +44,18 @@ module.exports = {
     }
   },
   // 配置跨域
-  // devServer: {
-  //   // development server port 8000
-  //   // port: 8000,
-  //   proxy: {
-  //     '/api': {
-  //       // target: 'https://mock.ihx.me/mock/5baf3052f7da7e07e04a5116/antd-pro',
-  //       // target: "http://192.168.1.134:8083/okcloud/",
-  //       // target: 'http://39.107.78.120:8083/okcloud/',
-  //       target: Object[env],
-  //       ws: false,
-  //       changeOrigin: true,
-  //       pathRewrite: {
-  //         '^/api': '',
-  //       },
-  //     },
-  //   },
-  // },
+  devServer: {
+    proxy: {
+      "/api": {
+        target: "http://love.bailuge.com/",
+        ws: false,
+        changeOrigin: true,
+        pathRewrite: {
+          "^/api": "/api"
+        }
+      }
+    }
+  },
   publicPath: "./",
   // disable source map in production
   productionSourceMap: false,
