@@ -4,7 +4,7 @@
  * @Author       : zero
  * @Date         : 2020-08-05 15:45:45
  * @LastEditors  : zero
- * @LastEditTime : 2020-08-10 21:01:14
+ * @LastEditTime : 2020-08-17 16:18:34
 -->
 <template>
   <div class="content" v-if="details">
@@ -22,7 +22,9 @@
         class="disagree"
         >不同意</van-button
       >
-      <van-button type="info" round class="agree">同意</van-button>
+      <van-button type="info" round class="agree" @click="sure"
+        >同意</van-button
+      >
     </div>
   </div>
 </template>
@@ -39,6 +41,9 @@ export default {
     this.getDetail();
   },
   methods: {
+    sure() {
+      this.$router.replace("/bandPhone");
+    },
     getDetail() {
       getDetail({
         type: 1

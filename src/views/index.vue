@@ -5,7 +5,7 @@ import { import } from '@babel/types';
  * @Author       : zero
  * @Date         : 2020-07-14 15:20:25
  * @LastEditors  : zero
- * @LastEditTime : 2020-08-10 20:54:59
+ * @LastEditTime : 2020-08-17 12:20:51
 -->
 <template>
   <div v-if="config && selectItem">
@@ -109,7 +109,7 @@ import { import } from '@babel/types';
     />
     <div class="title_group">
       <span class="title">活动公告</span>
-      <span class="more">查看更多</span>
+      <span class="more" @click="toActiveList">查看更多</span>
       <van-icon
         class="more"
         name="arrow"
@@ -157,6 +157,9 @@ export default {
   methods: {
     ...mapActions(["setConfig"]),
     //web config
+    toActiveList() {
+      this.$router.push("/activeList");
+    },
     getSiteData() {
       getSite({})
         .then(result => {

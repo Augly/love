@@ -4,10 +4,10 @@
  * @Author: zero
  * @Date: 2019-07-15 10:33:40
  * @LastEditors  : zero
- * @LastEditTime : 2020-08-10 21:15:46
+ * @LastEditTime : 2020-08-17 11:51:13
  */
 // eslint-disable-next-line no-unused-vars
-// import Vue from "vue";
+import Vue from "vue";
 import { Notify, Toast } from "vant";
 import axios from "axios";
 import { VueAxios } from "./axios";
@@ -48,7 +48,8 @@ service.interceptors.request.use(config => {
   // if (token) {
   config.headers[
     "Authorization"
-  ] = `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb3ZlLmJhaWx1Z2UuY29tXC9hcGlcL3VzZXJzXC9sb2dpbiIsImlhdCI6MTU5NjYyMTc5NywiZXhwIjoxNjAwMjIxNzk3LCJuYmYiOjE1OTY2MjE3OTcsImp0aSI6IkpaNlc2dERhdWl5ZkRIdGYiLCJzdWIiOjEsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.xvFjPSR6MF63-J-wgtjIjmlB0TngkRvc9JQn2sFJORg`; // 让每个请求携带自定义 token 请根据实际情况自行修改
+  ] = `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb3ZlLmJhaWx1Z2UuY29tXC9hcGlcL3VzZXJzXC9sb2dpbiIsImlhdCI6MTU5NzM4NTk2MCwiZXhwIjoxNjAwOTg1OTYwLCJuYmYiOjE1OTczODU5NjAsImp0aSI6IkN1cnVZbzNxUjMwcndOSWsiLCJzdWIiOjQsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.P72qK8nmXx8-h2iUwyxb8JvOiW8W9Vpv-WRRb5WMZQo`;
+  // config.headers["Authorization"] = Vue.ls.get("Access-access_token"); // 让每个请求携带自定义 token 请根据实际情况自行修改
   // }
   return config;
 }, err);

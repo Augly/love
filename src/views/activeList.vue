@@ -4,64 +4,84 @@
  * @Author       : zero
  * @Date         : 2020-08-09 13:38:03
  * @LastEditors  : zero
- * @LastEditTime : 2020-08-10 16:17:42
+ * @LastEditTime : 2020-08-17 15:41:37
 -->
 <template>
-  <van-list
-    v-model="loading"
-    :finished="finished"
-    finished-text="没有更多了"
-    @load="onLoad"
-  >
-    <van-empty class="custom-image" :image="nodata" description="暂无活动" />
-    <div class="items" v-for="item in list" :key="item" :title="item">
-      <p class="time">12121</p>
-      <div class="item">
-        <van-image src="" width="78px" height="75px" fit="contain" />
-        <div class="item_res">
-          <div class="item_res_title">
-            <span class="title">爱情来的太快</span>
-            <van-tag round type="warning" size="medium">活动中</van-tag>
-            <!--
-            <van-tag color="#BABDD1" round size="large">活动结束</van-tag> -->
+  <div>
+    <van-empty
+      class="custom-image"
+      :image="nodata"
+      description="暂无活动"
+      v-if="list.length === 0"
+    />
+    <van-list
+      v-model="loading"
+      :finished="finished"
+      finished-text="没有更多了"
+      @load="onLoad"
+    >
+      <div class="items" v-for="item in list" :key="item.id">
+        <p class="time">{{ item.created_at }}</p>
+        <div class="item">
+          <van-image
+            :src="item.thumb"
+            width="78px"
+            height="75px"
+            fit="contain"
+          />
+          <div class="item_res">
+            <div class="item_res_title">
+              <span class="title">{{ item.title }}</span>
+              <van-tag round type="warning" size="medium" v-if="item.status"
+                >活动中</van-tag
+              >
+              <van-tag color="#BABDD1" round size="large" v-else
+                >活动结束</van-tag
+              >
+            </div>
+            <p class="mintitle van-multi-ellipsis--l2">
+              {{ item.description }}
+            </p>
           </div>
-          <p class="mintitle van-multi-ellipsis--l2">
-            情人节活动打九折，只限本次,千万别
-            错过情人节活动打九折，只限本次,千万别 错过
-          </p>
         </div>
       </div>
-    </div>
-  </van-list>
+    </van-list>
+  </div>
 </template>
 
 <script>
+import { getList } from "@/api/config.js";
 export default {
   data() {
     return {
       nodata: require("@/assets/image/noactive.png"),
       list: [],
       loading: false,
-      finished: false
+      finished: false,
+      page: 1
     };
   },
   methods: {
+    //active list
+    getActiveList() {
+      getList({
+        type: 1,
+        page: this.page
+      })
+        .then(result => {
+          if (result) {
+            this.list = this.list.concat(result.data.data);
+            this.loading = false;
+            this.page++;
+            if (this.list.length === result.data.total) {
+              this.finished = true;
+            }
+          }
+        })
+        .catch(() => {});
+    },
     onLoad() {
-      // 异步更新数据
-      // setTimeout 仅做示例，真实场景中一般为 ajax 请求
-      setTimeout(() => {
-        for (let i = 0; i < 10; i++) {
-          this.list.push(this.list.length + 1);
-        }
-
-        // 加载状态结束
-        this.loading = false;
-
-        // 数据全部加载完成
-        if (this.list.length >= 40) {
-          this.finished = true;
-        }
-      }, 1000);
+      this.getActiveList();
     }
   }
 };

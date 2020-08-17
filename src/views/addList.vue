@@ -4,7 +4,7 @@
  * @Author       : zero
  * @Date         : 2020-08-09 13:13:59
  * @LastEditors  : zero
- * @LastEditTime : 2020-08-09 13:35:45
+ * @LastEditTime : 2020-08-17 23:45:48
 -->
 <template>
   <div style="padding-bottom:50px;">
@@ -45,6 +45,12 @@ export default {
   methods: {
     onAdd() {
       Toast("新增地址");
+      this.$router.push({
+        path: "/addressEdit",
+        query: {
+          title: "新增地址"
+        }
+      });
     },
     onEdit(item, index) {
       Toast("编辑地址:" + index);

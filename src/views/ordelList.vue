@@ -4,7 +4,7 @@
  * @Author       : zero
  * @Date         : 2020-08-09 15:24:02
  * @LastEditors  : zero
- * @LastEditTime : 2020-08-10 21:20:07
+ * @LastEditTime : 2020-08-17 11:53:03
 -->
 <template>
   <div>
@@ -24,7 +24,7 @@
         <div class="item_head">
           <div class="item_time_data">
             <p class="item_time_data_title">编号：{{ item.no }}</p>
-            <p class="item_time">{{ item.created_at }}</p>
+            <p class="item_time">{{ item.receive_at }}</p>
           </div>
           <span class="status">签约完成</span>
         </div>
@@ -33,7 +33,7 @@
           <p class="content">{{ item.name }} & {{ item.love_name }}</p>
           <div class="price_group">
             <span class="price_title">总金额：</span>
-            <span class="price">￥{{ item.paid_at }}</span>
+            <span class="price">￥{{ item.price }}</span>
           </div>
         </div>
         <van-divider />

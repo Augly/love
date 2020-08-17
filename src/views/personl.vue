@@ -4,7 +4,7 @@
  * @Author       : zero
  * @Date         : 2020-07-15 11:52:55
  * @LastEditors  : zero
- * @LastEditTime : 2020-08-10 17:05:44
+ * @LastEditTime : 2020-08-17 11:54:25
 -->
 <template>
   <div>
@@ -28,7 +28,7 @@
     </div>
     <h4 class="title">我的信息</h4>
     <div class="link_group">
-      <van-cell title="我的合约" is-link to="index">
+      <van-cell title="我的合约" is-link to="myContract">
         <template #icon>
           <van-icon
             color="#5369FC"
@@ -48,7 +48,7 @@
           />
         </template>
       </van-cell>
-      <van-cell title="我的订单" is-link to="index">
+      <van-cell title="我的订单" is-link to="ordelList">
         <template #icon>
           <van-icon
             color="#5369FC"

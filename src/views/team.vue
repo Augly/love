@@ -1,42 +1,41 @@
 <!--
+import { import } from '@babel/types';
  * @Descripttion : 
  * @version      : 
  * @Author       : zero
  * @Date         : 2020-08-05 17:30:47
  * @LastEditors  : zero
- * @LastEditTime : 2020-08-08 15:13:42
+ * @LastEditTime : 2020-08-17 12:03:37
 -->
 <template>
   <div>
     <div class="bg_wrap">
-      <p class="bg_people_num">9999925</p>
+      <p class="bg_people_num">{{ total_num }}</p>
       <p class="bg_title">团队总人数</p>
       <van-divider dashed />
       <div class="bg_items">
         <div class="bg_item">
           <p class="bg_item_title">今日邀请</p>
-          <p class="bg_item_num">8888888</p>
+          <p class="bg_item_num">{{ today_num }}</p>
         </div>
         <div class="bg_item">
           <p class="bg_item_title">本月邀请</p>
-          <p class="bg_item_num">7777777</p>
+          <p class="bg_item_num">{{ month_num }}</p>
         </div>
       </div>
     </div>
     <h5 class="title">团队成员</h5>
     <div>
-      <div class="list_item">
-        <div class="list_item_avtar"></div>
+      <div class="list_item" v-for="item in term_member" :key="item.id">
+        <van-image
+          :src="item.avatar"
+          fit="contain"
+          round
+          class="list_item_avtar"
+        />
         <div class="list_item_content">
-          <p class="name">刘伟</p>
-          <p class="join_time">加入时间：2020-07-31</p>
-        </div>
-      </div>
-      <div class="list_item">
-        <div class="list_item_avtar"></div>
-        <div class="list_item_content">
-          <p class="name">刘伟</p>
-          <p class="join_time">加入时间：2020-07-31</p>
+          <p class="name">{{ item.nickname }}</p>
+          <p class="join_time">加入时间：{{ item.created_at }}</p>
         </div>
       </div>
     </div>
@@ -44,7 +43,35 @@
 </template>
 
 <script>
-export default {};
+import { getMyTeam } from "@/api/user";
+export default {
+  data() {
+    return {
+      total_num: 0, //团队总人数
+      today_num: 0, //今日邀请
+      month_num: 0, //本月邀请
+      term_member: []
+    };
+  },
+  created() {
+    this.getMyTeam();
+  },
+  methods: {
+    getMyTeam() {
+      getMyTeam({})
+        .then(res => {
+          console.log(res);
+          if (res) {
+            this.total_num = res.data.total_num;
+            this.today_num = res.data.today_num;
+            this.month_num = res.data.month_num;
+            this.term_member = res.data.term_member;
+          }
+        })
+        .catch(() => {});
+    }
+  }
+};
 </script>
 
 <style lang="less" scoped>

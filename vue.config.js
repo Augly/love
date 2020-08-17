@@ -4,7 +4,7 @@
  * @Author       : zero
  * @Date         : 2020-07-14 14:31:44
  * @LastEditors  : zero
- * @LastEditTime : 2020-08-10 17:41:32
+ * @LastEditTime : 2020-08-15 14:07:42
  */
 const path = require("path");
 function resolve(dir) {
@@ -47,11 +47,11 @@ module.exports = {
   devServer: {
     proxy: {
       "/api": {
-        target: "http://love.bailuge.com/",
+        target: "http://love.bailuge.com/api/",
         ws: false,
         changeOrigin: true,
         pathRewrite: {
-          "^/api": "/api"
+          "^/api": ""
         }
       }
     }

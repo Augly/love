@@ -4,7 +4,7 @@
  * @Author       : zero
  * @Date         : 2020-07-14 19:06:40
  * @LastEditors  : zero
- * @LastEditTime : 2020-08-10 17:45:08
+ * @LastEditTime : 2020-08-17 11:12:24
  */
 import Vue from "vue";
 import App from "./App.vue";
@@ -16,7 +16,8 @@ import "@/assets/css/reset.less";
 import "@/assets/css/border.less";
 import "@/assets/iconfont/iconfont.css";
 import "@/config/user.js";
-
+// import "@/router/routeGuard.js";
+// import "@/router/routeGuard";
 import fastClick from "fastclick";
 fastClick.attach(document.body);
 Vue.config.productionTip = false;

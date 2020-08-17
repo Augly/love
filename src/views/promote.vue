@@ -1,10 +1,11 @@
 <!--
+import { import } from '@babel/types';
  * @Descripttion : 
  * @version      : 
  * @Author       : zero
  * @Date         : 2020-08-08 15:22:58
  * @LastEditors  : zero
- * @LastEditTime : 2020-08-09 12:11:27
+ * @LastEditTime : 2020-08-17 12:13:05
 -->
 <template>
   <div>
@@ -24,7 +25,7 @@
       <div class="left_scope">
         <p class="title">账户余额</p>
         <p class="money_num">
-          166.06
+          {{ alldata.my_wallet }}
         </p>
       </div>
       <van-button type="info" round class="right_button" @click="toWithdraw"
@@ -37,24 +38,24 @@
     <div class="items">
       <div class="item">
         <p class="title">个人本月业绩</p>
-        <p class="money_num">166.06</p>
+        <p class="money_num">{{ alldata.my_performance_month }}</p>
       </div>
       <div class="item">
         <p class="title">个人本月佣金</p>
-        <p class="money_num">166.06</p>
+        <p class="money_num">{{ alldata.my_commission_month }}</p>
       </div>
     </div>
     <div class="teamData">
       <div class="data_item">
-        <p class="number">96</p>
+        <p class="number">{{ alldata.term_num }}</p>
         <p class="title">团队人员</p>
       </div>
       <div class="data_item">
-        <p class="number">￥96</p>
+        <p class="number">￥{{ alldata.term_performance_month }}</p>
         <p class="title">团队本月业绩</p>
       </div>
       <div class="data_item">
-        <p class="number">￥96</p>
+        <p class="number">￥{{ alldata.term_commission_month }}</p>
         <p class="title">团队本月佣金</p>
       </div>
     </div>
@@ -62,8 +63,36 @@
 </template>
 
 <script>
+import { getMyPromote } from "@/api/user";
 export default {
+  data() {
+    return {
+      alldata: {
+        my_wallet: "0.00", //我的佣金
+        my_performance_month: "0.00", //个人本月业绩
+        my_commission_month: "0.00", //个人本月佣金
+        term_num: 1, //团队人数
+        term_performance_month: "0.00", //团队本月业绩
+        term_commission_month: "0.00" //团队本月佣金
+      }
+    };
+  },
+  created() {
+    this.getMyPromote();
+  },
   methods: {
+    getMyPromote() {
+      getMyPromote({})
+        .then(result => {
+          console.log(result);
+          if (result) {
+            this.data = result.data;
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    },
     toRecord() {
       this.$router.push("/recordForWithdraw");
     },

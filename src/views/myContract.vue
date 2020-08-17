@@ -4,14 +4,14 @@
  * @Author       : zero
  * @Date         : 2020-08-10 15:46:38
  * @LastEditors  : zero
- * @LastEditTime : 2020-08-10 21:30:11
+ * @LastEditTime : 2020-08-17 12:19:23
 -->
 <template>
   <div>
     <van-empty
       class="custom-image"
       :image="nodata"
-      description="暂无活动"
+      description="暂无合约"
       v-if="list.length === 0"
     />
     <div
@@ -32,7 +32,10 @@
             style="margin-right:5px;"
           />{{ item.love_name }}</span
         >
-        <van-button color="rgba(83, 105, 252, 1)" class="sure"
+        <van-button
+          color="rgba(83, 105, 252, 1)"
+          class="sure"
+          @click="liftContract(item.id)"
           >解除合约</van-button
         >
       </div>
@@ -53,7 +56,7 @@
         <span class="title">
           身份证号:
         </span>
-        {{ item.love_idcard }}
+        {{ item.idcard }}
       </p>
       <p class="item_p">
         <span class="title">
@@ -76,7 +79,7 @@
 </template>
 
 <script>
-import { getContractList } from "@/api/ordel.js";
+import { getContractList, liftContract } from "@/api/ordel.js";
 
 export default {
   data() {
@@ -89,6 +92,17 @@ export default {
     this.getList();
   },
   methods: {
+    liftContract(id) {
+      liftContract({
+        order_id: id
+      })
+        .then(result => {
+          if (result) {
+            this.getList();
+          }
+        })
+        .catch(() => {});
+    },
     getList() {
       getContractList({})
         .then(result => {
